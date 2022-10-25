@@ -3,7 +3,7 @@ let bienvenido = prompt('Bienvenido a Atlas Nutrición \n\n¿Quiere conocer su I
 
 while (bienvenido == "y" || bienvenido =="Y") {    
     let peso = Number(prompt("Ingrese su peso en Kg"));
-    let estatura = Number(prompt("Ingrese su estatura en metros"));
+    let estatura = parseFloat(prompt("Ingrese su estatura en metros"))
     if (peso>0 && estatura>0) {     
         alert(imc(peso,estatura));
     } else{
