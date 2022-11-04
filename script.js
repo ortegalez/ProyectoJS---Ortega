@@ -28,14 +28,10 @@ const BBDD = [producto01, producto02, producto03, producto04, producto05]
 // FUNCIONES
 function mostrarMenuRemeras(){
     const remeras = BBDD.filter((menuRemeras) => menuRemeras.articulo.includes('Remera'))
-    // console.log(remeras)
     console.log("Lista de Remeras:")
     for(let obj of remeras){
         console.log(obj.articulo +" "+ obj.tipo + "\nPrecio: $" + obj.precio) // Usando for - of
     }
-    // for (let i=0; i<=remeras.length; i++) {
-    //     alert("Lista de Remeras:\n" + remeras[i].articulo + " " + remeras[i].tipo + "\nPrecio: $" + remeras[i].precio)
-    // }
 }
 
 function mostrarMenuBuzos(){
@@ -43,20 +39,12 @@ function mostrarMenuBuzos(){
     // console.log(buzos)
     console.log("Lista de Buzos:")
     buzos.forEach((el)=>{console.log(el.articulo + " " + el.tipo + "\nPrecio: $" + el.precio)}) // Usando forEach
-    
-    // for (let i=0; i<=buzos.length; i++) {
-    //     alert("Lista de Buzos:\n" + buzos[i].articulo + " " + buzos[i].tipo + "\nPrecio: $" + buzos[i].precio)
-    // }
 }
 
 function mostrarMenuTodos(){
-    // console.log(BBDD)
     for(let obj of BBDD){
         console.log(obj.articulo +" "+ obj.tipo + "\nPrecio: " + obj.precio)
     }
-}
-
-function Comprar(){
 }
 
 function AgregarCarrito() {
