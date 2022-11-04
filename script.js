@@ -1,37 +1,8 @@
 // VARIABLES
 let productos;
 let total = 0;
-
-
-// Funcion que no voy usar
-// function mostrarProductos(productos){
-//     i = 0;
-//     console.log(productos[0].articulo +":")
-//     for (i=0; i<productos.length; i++){
-//         console.log(productos[i].tipo +'\nTalles: '+ productos[i].talles +'\nColores: '+ productos[i].color +'\nPrecio: $'+ productos[i].precio);
-//     }
-// }
-
-
-// const buzos = producto.filter((menuBuzos) => menuBuzos.articulo.includes('Buzo'))
-// console.log(buzos)
-
-
-// funcion para buscar un producto y mostrarlo
-// function buscarProducto(articulo)
-// funcion para comprar y que sume los precios de los carritos
-
-// https://www.educacionit.com/acceso-webinar?hash=069DA71AE00B62036F5142E6395BDC35&contacto_id=877805&calendario_id=62944
-
-// ARRAYS DE ARTICULOS
-// const remeras = [{id: 001, tipo: "clásico", talles: "S, M, L, XL", color: "Blanco, Negro, Rojo, Azul", precio: 1500},
-//                  {id: 002, tipo: "Slim", talles: "S, M, L, XL", color: "Blanco, Negro, Rojo, Azul", precio: 1600},
-//                  {id: 003, tipo: "Girl", talles: "S, M, L, XL", color: "Blanco, Negro, Rojo, Azul", precio: 1500},]
-
-// const buzos = [{id: 001, tipo: "Con Capucha", talles: "S, M, L, XL", color: "Negro, Blanco, Bordo", precio: 4000},
-//                 {id: 002, tipo: "Sin Capucha", talles: "S, M, L, XL", color: "Negro, Blanco, Rosa", precio: 3500}]
-
-
+let verMenu = true;
+let opMenu = 'si';
 
 // CONSTRUCTOR PARA AGREGAR ELEMENTOS
 class Producto {
@@ -121,19 +92,21 @@ function AgregarCarrito() {
     })
 }
 
+function formularioIngreso() {
+    let usuario = prompt("Bienvenido a Maco Moda \nComplete el formulario de registro \nIngrese su nombre:")
+    if(usuario != "") {
+        alert(`Gracias por completar el registro ${usuario}`);
+    } else {
+        alert('No ingresó un dato');
+    }
+    return usuario
+}
 
-// INICIO
-
-let nombreUsuario = prompt("Bienvenida a Maco Moda \nComplete el formulario de registro \nIngrese su nombre:")
-alert(`Gracias por completar el registro ${nombreUsuario}`)
-
-
-let verMenu = true;
-let opMenu = 'si';
+// MENU:
+nombreUsuario = formularioIngreso();
 
 while (verMenu == true) {
     let op = prompt("Menú principal: \n1. Ver Remeras \n2. Ver Buzos \n3. Ver Todos \n4. Agregar al carrito \n5. Salir")
-    
     if (op == 1){
         mostrarMenuRemeras();
     } else if (op == 2) {
@@ -148,7 +121,7 @@ while (verMenu == true) {
     } else {
         console.log("Seleccione un opcion valida")
     }
-
+    
     opMenu = prompt("¿Quiere ver el menú nuevamente? \nIngrese 'si' o 'no'")
     if(opMenu == 'si'){
         verMenu = true;
@@ -158,134 +131,4 @@ while (verMenu == true) {
         alert("No ingresó una opcion válida")
     }
 }
-
 alert("Gracias por visitarnos")
-
-
-// console.log(Object.keys(remeras.tipos).length) Convierte el objeto en un array y me dice la cant. de atributos que tiene
-
-// while (bienvenido.toLowerCase()) {     
-
-    // let opcion = Number(prompt('Bienvenido a MACO MODA - Tienda Online \nElija una opcion del menú: \n1) Ver Productos \n2) Comprar'));
-    // let nombreUsuario ="";
-
-    // switch(opcion){
-    //     case 1:
-    //         console.log("Modelos de remeras disponibles:")
-    //         for(const propiedad in remeras.tipos) {                
-    //             console.log(remeras.tipos[propiedad])
-    //         }
-    //         console.log("Modelos de buzos disponibles:")
-    //         for(const propiedad in buzos.tipos) {                
-    //             console.log(buzos.tipos[propiedad])
-    //         }
-            
-    //     }
-    //     break;
-    //     case 2:
-    //         alert("Complete el formulario de registro:")
-    //         nombreUsuario = prompt("Ingrese su nombre")
-    //         alert("Gracias por completar el registro "+ nombreUsuario)
-    //     break;
-    //     default:
-    //         alert("Seleccione una opcion válida");
-    //     break;
-    // }
-
-// function remeras(tipoRemera,cantRemera) {
-//     montoRemera = cantRemera*2000;
-// }
-
-// function buzos() {
-//     return "Seleccione: \n\n1. Buzos con capucha \n2. Buzos sin capucha";
-// }
-
-// function packs() { 
-//     return "Seleccione: \n\n1. Pack x 2 \n2. Pack x 3 \n3. Pack x 4 \n4. Pack x 5."
-// }
-
-// function compraRemera(tipoRemera, cantRemera) {
-//     let buyRemeras = tipoRemera*cantRemera;
-// }
-
-// let tiposVinos = "tinto";
-
-// tiposVinos = tiposVinos + " dulce";
-
-// tiposVinos = tiposVinos + " amargo";
-
-// console.log(tiposVinos);
-
-
-
-// // for(let i=0;i<3;i++){
-
-    
-
-// // }
-
-// let nombreProducto = "vino";
-// let precioProducto = 900;
-// let descuento10 = 200; // descuento del 10%
-// let totalCompra = 0;
-
-// totalCompra = precioProducto + totalCompra
-
-// console.log("el usuario pago: " + totalCompra)
-
-// function descuento(){
-
-//     totalCompra = totalCompra - descuento10;
-    
-
-// }
-
-// descuento();
-
-// console.log(totalCompra)
-// jose.zapata@bue.edu.ar
-
- 
-// alert("Gracias por visitarnos");
-
-
-
-
-/*
-Será que este código es suficiente para la entrega o debo agregarle más? estoy algo inseguro :"(:
-
-
-let opcion2;
-let n;
-let valortotal1 = 0;
-let valortotal2 = 0;
-const valortotal = (a,b) => a + b
-const descuento = (a,b) => a * b
-const resta = (a,b) => a - b    
-
-let opcion1 = Number(prompt("Bienvenido al carrito de compras \n 1-Ingresar al carrito \n 4-salir"))
-
-while (opcion1 != 4){
-    opcion1 = Number(prompt("1- Agregar productos/Consultar total \n 4- Salir"))
-    if(opcion1 == 1){
-        n = Number(prompt("elige los productos que quieres agregar: \n 1- Aretes de corazón: 18000 COP \n 2- Cadena en acero: 20000 COP \n 3- Total" ));
-        if (n == 1){
-            let cant1 = Number(prompt("¿Cuántos aretes quieres agregar"));
-                valortotal1 = 10000*cant1;
-        }
-        else if (n == 2){
-            let cant2 = Number(prompt("¿Cuántas cadenas quieres agregar"));
-                valortotal2 = 20000*cant2;
-        }
-        else if (n == 3){
-            let Total = valortotal(valortotal1, valortotal2);
-            if (Total >= 200000){
-                let Descuento = resta(Total,descuento(Total,0.05));
-                alert("Valor total con descuento: "+ Descuento);
-            } else if(Total < 200000){
-                alert("Valor total: "+ Total);
-            }
-        }
-    }  
-   
-}*/
