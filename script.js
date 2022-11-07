@@ -6,22 +6,23 @@ let opMenu = 'si';
 
 // CONSTRUCTOR PARA AGREGAR ELEMENTOS
 class Producto {
-    constructor (id, articulo, tipo, talles, color, precio) {
+    constructor (id, articulo, tipo, talles, color, precio, monto) {
         this.id = id;
         this.articulo = articulo;
         this.tipo = tipo;
         this.talles = talles;
         this.color = color;
         this.precio = precio;
+        this.monto = monto;
     }
 } 
 
 // OBJETOS DE PRODUCTOS
-const producto01 = new Producto("001","Remera","Clásica","S, M, L, XL","Blanco, Negro, Rojo, Azul",1500);
-const producto02 = new Producto("002","Remera","Slim","S, M, L, XL","Blanco, Negro, Rojo, Azul",1600);
-const producto03 = new Producto("003","Remera","Girl","S, M, L, XL","Blanco, Negro, Rojo, Azul",1400);
-const producto04 = new Producto("004","Buzo","con capucha","S, M , L, XL","Blanco, Negro, Rojo, Azul",2500);
-const producto05 = new Producto("005","Buzo","sin capucha","S, M, L, XL","Blanco, Negro, Rojo, Azul",2000);
+const producto01 = new Producto("001","Remera","Clásica","S, M, L, XL","Blanco, Negro, Rojo, Azul",1500, "");
+const producto02 = new Producto("002","Remera","Slim","S, M, L, XL","Blanco, Negro, Rojo, Azul",1600, "");
+const producto03 = new Producto("003","Remera","Girl","S, M, L, XL","Blanco, Negro, Rojo, Azul",1400, "");
+const producto04 = new Producto("004","Buzo","con capucha","S, M , L, XL","Blanco, Negro, Rojo, Azul",2500, "");
+const producto05 = new Producto("005","Buzo","sin capucha","S, M, L, XL","Blanco, Negro, Rojo, Azul",2000, "");
 
 const BBDD = [producto01, producto02, producto03, producto04, producto05]
 
@@ -50,24 +51,28 @@ function mostrarMenuTodos(){
 function AgregarCarrito() {
     let agregarPdo = 'si'
     const carrito = [];
-    const totalCarrito = []
     
     while (agregarPdo == 'si'){
         let agregar = prompt("Seleccione el producto que desea agregar: \n1. Remera CLasica \n2. Remera Slim \n3. Remera Girl \n4. Buzos con capucha \n5. Buzos sin capucha") 
         if (agregar == 1){
             let clasica = BBDD.find(producto => producto.tipo == "Clásica")
+            montoCarrito(clasica)
             carrito.push(clasica)
         } else if (agregar == 2) {
             let slim = BBDD.find(producto => producto.tipo == "Slim")
+            montoCarrito(slim)
             carrito.push(slim)
         } else if (agregar == 3) {
             let girl = BBDD.find(producto => producto.tipo == "Girl")
+            montoCarrito(girl)
             carrito.push(girl)    
         } else if (agregar == 4) {
             let conCapucha = BBDD.find(producto => producto.tipo == "con capucha")
+            montoCarrito(conCapucha)
             carrito.push(conCapucha)
         } else if (agregar == 5) {
             let sinCapucha = BBDD.find(producto => producto.tipo == "sin capucha")
+            montoCarrito(sinCapucha)
             carrito.push(sinCapucha)    
         } 
         else {
@@ -76,8 +81,10 @@ function AgregarCarrito() {
         agregarPdo = prompt("¿Desea agregar otro articulo al carrito? \n'Si' o 'No'")
     }
     console.log("Usuario: " + nombreUsuario + "\nAgregados al carrito:")
+    const totalCarrito = carrito.reduce((acumulador, carrito) => acumulador + carrito.monto, 0)
     carrito.forEach((el)=>{console.log(`${el.articulo} ${el.tipo}\nPrecio: \$${el.precio}`)
     })
+    console.log("Total de compra: $" + totalCarrito)
 }
 
 function formularioIngreso() {
@@ -88,6 +95,11 @@ function formularioIngreso() {
         alert('No ingresó un dato');
     }
     return usuario
+}
+
+function montoCarrito(articulo) {
+    let cantidad = prompt("Ingrese cantidad de articulos:")
+    articulo.monto = cantidad*articulo.precio;
 }
 
 // MENU:
