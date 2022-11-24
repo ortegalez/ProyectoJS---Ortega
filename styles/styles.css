@@ -1,4 +1,4 @@
-/*-------------- GENERALS ---------------*/
+/*============= GENERALS ============*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Ubuntu:ital,wght@1,300&display=swap');
 * {
     padding: 0;
@@ -30,7 +30,7 @@ a {
 }
 
 .logo-principal {
-    width: 40%;
+    width: 25%;
 }
 
 header, footer {
@@ -42,6 +42,16 @@ header, footer {
     display: grid;
     grid-template-columns: 1fr 4fr;
     background-color: var(--dark-gray);
+}
+
+.main-principal {
+    height: 85vh;
+    background-color: var(--dark-gray);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 aside {
@@ -56,7 +66,18 @@ aside {
     justify-content: center;
 }
 
-main {
+
+
+
+.titulo-principal { 
+    color: var(--dark-blue);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* =============== SESION DE PRODUCTOS ============== */
+
+.main-productos {
     background-color: var(--white);
     margin: 1rem;
     margin-left: 0;
@@ -64,73 +85,12 @@ main {
     padding: 2rem;
 }
 
-.menu {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    gap: 0.5rem;
-}
-
-.boton-menu {
-    background-color: transparent;
-    color: var(--yellow);
-    border: 0;
-    gap: 1rem;
-    min-width: 100%;
-    padding: 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    display: flex;
-}
-
-.boton-menu.active {
-    background-color: var(--white);
-    color: var(--dark-gray);
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    position:relative
-}
-
-.boton-menu.active::before {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    width: 1rem;
-    height: 2rem;
-    bottom:100%;
-    right:0;
-    border-bottom-right-radius: 0.5rem;
-    box-shadow: 0 1rem 0 var(--white)  ;
-}
-
-
-.boton-menu.active::after {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    width: 1rem;
-    height: 2rem;
-    top: 100%;
-    right:0;
-    border-top-right-radius: 0.5rem;
-    box-shadow: 0 -1rem 0 var(--white)  ;
-}
-
-.boton-carrito {
-    margin-top: 2rem;
-}
-
-.titulo-principal {
-    color: var(--dark-blue);
-    font-weight: bold;
-    margin-bottom: 1rem;
-}
-
 .seccion-productos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid  var(--dark-blue);
     /* display: flex;
     flex-direction: row;
     flex-wrap: wrap; */
@@ -172,12 +132,77 @@ main {
     background-color: var(--dark-blue);
 }
 
-.numerito {
+/* =============== FIN SESION DE PRODUCTOS ============== */
+
+/* ============= MENU LATERAL DE PRODUCTOS ============== */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.5rem;
+}
+
+.boton-menu {
+    background-color: transparent;
+    color: var(--yellow);
+    border: 0;
+    gap: 1rem;
+    min-width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+}
+
+.boton-menu.active {
+    background-color: var(--white);
+    color: var(--dark-gray);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    position:relative
+}
+
+.boton-menu.active::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    width: 1rem;
+    height: 2rem;
+    bottom:100%;
+    right:0;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow: 0 1rem 0 var(--white)  ;
+}
+
+.boton-menu.active::after {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    width: 1rem;
+    height: 2rem;
+    top: 100%;
+    right:0;
+    border-top-right-radius: 0.5rem;
+    box-shadow: 0 -1rem 0 var(--white)  ;
+}
+
+.boton-carrito {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+}
+
+.numero-carrito {
     padding: 0.15rem 0.25rem;
     background-color: var(--white);
     color: var(--dark-gray);
     border-radius: 0.25rem;
+    text-align: center;
+    width: 3rem;
 }
+
+/* =========== FIN MENU LATERAL DE PRODUCTOS ============ */
 /* Footer */
 
 /*  CARRITO */
@@ -189,6 +214,16 @@ main {
 .carrito-comprado {
     display: none;
 } */
+
+
+/* =================== SECCION DEL CARRITO ================== */
+
+.seccion-carrito {
+    border: 2px solid ;
+    min-height: 5rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+}
 
 .carrito-productos {
     display: flex;
@@ -240,7 +275,6 @@ main {
     border-top-left-radius: 0;
 }
 
-
 .carrito-acciones {
     display: flex;
     justify-content: space-between;
@@ -264,6 +298,13 @@ main {
     gap: 1rem;
 }
 
+.carrito-vacio {
+    font-size: 1.5rem;
+    color: var(--dark-gray);
+    text-align: center;
+}
+
 .disabled{
     display: none;
 }
+/* =================== FIN SECCION DEL CARRITO ================== */

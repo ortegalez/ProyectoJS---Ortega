@@ -1,150 +1,243 @@
-// //***************************************** VARIABLES GLOBALES
-// let productos;
-// let total = 0;
-// let verMenu = true;
-// let opMenu = 'si';
+//********************* OBJETOS DE PRODUCTOS ***********************/ 
 
-// //***************************** CONSTRUCTOR PARA AGREGAR ELEMENTOS
-class Producto {
-    constructor (id, articulo, tipo, talles, color, precio, monto) {
-        this.id = id;
-        this.articulo = articulo;
-        this.tipo = tipo;
-        this.talles = talles;
-        this.color = color;
-        this.precio = precio;
-        this.monto = monto;
+const BBDD = [
+    { 
+    id:1,
+    articulo: "Remera",
+    color: "Blanco",
+    img: "../images/productos/remera-blanca.jpg",
+    talles: "S, M, L, XL",
+    precio: 1500,
+    cantidad: 1
+    },
+    { 
+    id:2,
+    articulo: "Remera",
+    color: "Negro",
+    img: "../images/productos/remera-negra.jpg",
+    talles: "S, M, L, XL",
+    precio: 1500,
+    cantidad: 1
+    },
+    { 
+    id:3,
+    articulo: "Remera",
+    color: "Azul",
+    img: "../images/productos/remera-azul.jpg",
+    talles: "S, M, L, XL",
+    precio: 1500,
+    cantidad: 1
+    },
+    { 
+    id:4,
+    articulo: "Remera",
+    color: "Rosa",
+    img: "../images/productos/remera-rosa.jpg",
+    talles: "S, M, L, XL",
+    precio: 1500,
+    cantidad: 1
+    },
+    { 
+    id:5,
+    articulo: "Remera",
+    color: "Verde",
+    img: "../images/productos/remera-verde.jpg",
+    talles: "S, M, L, XL",
+    precio: 1500,
+    cantidad: 1
+    },
+    { 
+    id:6,
+    articulo: "Buzo",
+    color: "Negro",
+    img: "../images/productos/buzo-negro.jpg",
+    talles: "S, M, L, XL",
+    precio: 2000,
+    cantidad: 1
+    },
+    { 
+    id:7,
+    articulo: "Buzo",
+    color: "Verde",
+    img: "../images/productos/buzo-verde.jpg",
+    talles: "S, M, L, XL",
+    precio: 2000,
+    cantidad: 1
+    },
+    { 
+    id:8,
+    articulo: "Buzo",
+    color: "Gris",
+    img: "../images/productos/buzo-gris.jpg",
+    talles: "S, M, L, XL",
+    precio: 2000,
+    cantidad: 1
+    },
+    { 
+    id:9,
+    articulo: "Buzo",
+    color: "Rosa",
+    img: "../images/productos/buzo-rosa.jpg",
+    talles: "S, M, L, XL",
+    precio: 2000,
+    cantidad: 1
     }
-} 
+]
 
-// //**************************************** */ OBJETOS DE PRODUCTOS
+// ===============  Globales =================
+const contenedorProductos = document.getElementById('contenedor-productos');
 
-const producto01 = new Producto("001","Remera","Clásica","S, M, L, XL","Blanco, Negro, Rojo, Azul",1500, "");
-const producto02 = new Producto("002","Remera","Slim","S, M, L, XL","Blanco, Negro, Rojo, Azul",1600, "");
-const producto03 = new Producto("003","Remera","Girl","S, M, L, XL","Blanco, Negro, Rojo, Azul",1400, "");
-const producto04 = new Producto("004","Buzo","con capucha","S, M , L, XL","Blanco, Negro, Rojo, Azul",2500, "");
-const producto05 = new Producto("005","Buzo","sin capucha","S, M, L, XL","Blanco, Negro, Rojo, Azul",2000, "");
+const contenedorCarrito = document.getElementById('contenedor-carrito');
 
-const BBDD = [producto01, producto02, producto03, producto04, producto05]
+const botonVaciarCarrito = document.getElementById('vaciar-carrito')
+
+let carrito = []
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
+const contadorCarrito = document.querySelector('.numero-carrito')
+
+const precioTotal = document.getElementById("precio-total")
+
+// ===============  Fin Globales =================
 
 
-// //************************ FUNCIONES
+
+//  ===============  Alerts =============
+
+const botonComprar = document.querySelector('.carrito-acciones-comprar')
+
+botonComprar.addEventListener('click' , () => {
+    Swal.fire('Gracias por tu compra')
+    carrito.splice(0, carrito.length)
+    actualizarCarrito()
+})
+//  =============== Fin Alerts =============
 
 
-function mostrarMenuArticulo(articulo) {
-    console.log("Lista de " + articulo+"s:")
-    BBDD.forEach((el) => {console.log(el.articulo + " " + el.tipo + "\nPrecio: $" + el.precio)})
+// =================== Funciones ===================
+
+// Funcion para mostrar TODOS los productos
+function mostrarProductos () {
+
+    BBDD.forEach((producto)=>{
+        let cardProducto = document.createElement('div')
+        cardProducto.className = 'card-producto'
+        cardProducto.innerHTML =
+                `<img class="producto-imagen" src="${producto.img}" alt="${producto.articulo}">
+                 <div class="producto-detalle">
+                     <h5 class="producto-titulo">${producto.articulo} ${producto.color}</h5>
+                     <small class="producto-talles"> ${producto.talles}</small>
+                     <p class="producto-precio">$${producto.precio}</p>
+                     <button id="agregar${producto.id}" class="producto-agregar">Agregar</button>
+                 </div>`
+
+        contenedorProductos.append(cardProducto)
+
+        const btnAgregar = document.getElementById(`agregar${producto.id}`)
+       
+        btnAgregar.addEventListener('click', () => {
+            agregarCarrito(producto.id)
+        })
+    }) 
+  
+}
+mostrarProductos () 
+
+// Funcion para agregar items al carrito de compra
+function agregarCarrito (prodId)  {
+   
+    const item = BBDD.find((prod) => prod.id === prodId); 
+    
+    // Actualizar numero agregado del item en el carrito:
+    if(carrito.some(producto => producto.id === prodId)) {
+        const index = carrito.findIndex(producto => producto.id ===  prodId)
+        carrito[index].cantidad++;      
+    } else {
+        carrito.push(item)
+    }
+    const enCarrito = JSON.stringify(carrito)
+    console.log(enCarrito)
+    actualizarCarrito() 
 }
 
-mostrarMenuArticulo("Remera") 
 
-// function formularioIngreso() {
-//     let usuario = prompt("Bienvenido a Maco Moda \nComplete el formulario de registro \nIngrese su nombre:")
-//     if(usuario != "") {
-//         alert(`Gracias por completar el registro ${usuario}`);
-//     } else {
-//         alert('No ingresó un dato');
-//     }
-//     return usuario
-// }
-
-// function montoCarrito(articulo) {
-//     let cantidad = prompt("Ingrese cantidad de articulos:")
-//     articulo.monto = cantidad*articulo.precio;
-// }
-
-
-
-
-// function mostrarMenuTodos(){
-//     for(let obj of BBDD){
-//         console.log(obj.articulo +" "+ obj.tipo + "\nPrecio: " + obj.precio)
-//     }
-// }
-
-// function AgregarCarrito() {
-//     let agregarPdo = 'si'
-//     const carrito = [];
+// Funcion para  crear el item del producto en el carrito de compras
+function actualizarCarrito () {
     
-//     while (agregarPdo == 'si'){
-//         let agregar = Number(prompt("Seleccione el producto que desea agregar: \n1. Remera CLasica \n2. Remera Slim \n3. Remera Girl \n4. Buzos con capucha \n5. Buzos sin capucha")) 
+    contenedorCarrito.innerHTML ="" // Borrar nodo para que no se acumulen los productos en el carrito
+   
+    carrito.forEach((producto)=>{
+    let itemCarrito = document.createElement('div')
+    itemCarrito.className = 'carrito-producto';
+    itemCarrito.innerHTML = 
+            `<img class="carrito-producto-imagen" src="${producto.img}" alt="${producto.articulo}">
+            <div class="carrito-producto-titulo">
+                <p>${producto.articulo}</p>
+                <h5>${producto.color}</h5> 
+            </div>
+            <div class="carrito-producto-cantidad">
+                <p>Cantidad</p>
+                <h5 id="cantidad" >${producto.cantidad}</h5>
+            </div>
+            <div class="carrito-producto-precio">
+                <p>Precio</p>
+                <h5>$${producto.precio}</h5>
+            </div>
+            <div class="carrito-producto-subtotal">
+                <p>Sub-total</p>
+                <h5>$${producto.precio*producto.cantidad}</h5>
+            </div>
+            <button onclick ="eliminarDelCarrito(${producto.id})" class="carrito-producto-eliminar"><i class="bi bi-trash3-fill"></i></button>`
         
-//         switch(agregar) {
-//             case 1:
-//                 let clasica = BBDD.find(producto => producto.tipo == "Clásica")
-//                 montoCarrito(clasica)
-//                 carrito.push(clasica)
-//             break;
-//             case 2:
-//                 let slim = BBDD.find(producto => producto.tipo == "Slim")
-//                 montoCarrito(slim)
-//                 carrito.push(slim)
-//             break;
-//             case 3:
-//                 let girl = BBDD.find(producto => producto.tipo == "Girl")
-//                 montoCarrito(girl)
-//                 carrito.push(girl)   
-//             break;
-//             case 4:
-//                 let conCapucha = BBDD.find(producto => producto.tipo == "con capucha")
-//                 montoCarrito(conCapucha)
-//                 carrito.push(conCapucha)
-//             break;
-//             case 5:
-//                 let sinCapucha = BBDD.find(producto => producto.tipo == "sin capucha")
-//                 montoCarrito(sinCapucha)
-//                 carrito.push(sinCapucha) 
-//             break;
-//             default:
-//                 console.log("Seleccion no válida")
-//         }
+        contenedorCarrito.appendChild(itemCarrito)
+       
+        // Sumar monto total de los item agregados al carrito:
+        precioTotal.innerText = "$" + carrito.reduce((acc, producto) => acc + (producto.precio*producto.cantidad), 0)
+        actualizarNumeroCarrito ()
+    })
+    // Almaceno en el local Storage
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 
-//         agregarPdo = prompt("¿Desea agregar otro articulo al carrito? \n'Si' o 'No'")
-//     }
-
-//     console.log("Usuario: " + nombreUsuario + "\nAgregados al carrito:")
-//     const totalCarrito = carrito.reduce((acumulador, carrito) => acumulador + carrito.monto, 0)
-//     carrito.forEach((el)=>{console.log(`${el.articulo} ${el.tipo}\nPrecio: \$${el.precio}`)
-//     })
-//     console.log("Total de compra: $" + totalCarrito)
-// }
+    if(carrito.length == 0) {
+        contenedorCarrito.appendChild(mensajeCarritoVacio)
+        precioTotal.innerText = 0,
+        contadorCarrito.innerText = 0;
+    }
+}
 
 
-// /*******************************  MENU *******************************/ 
-// nombreUsuario = formularioIngreso();
+// Funcion para Eliminar el item del producto en el carrito de compras
+const eliminarDelCarrito = (prodId) => {
+    const item = carrito.find((producto) => producto.id === prodId)
+    const indice = carrito.indexOf(item)
+    carrito.splice(indice, 1)
+    actualizarCarrito()
+}
 
-// while (verMenu == true) {
+// Actualizar numero del carrito al agragar items:
+function actualizarNumeroCarrito () {
+    contadorCarrito.innerText = carrito.reduce((acc, producto) => acc + producto.cantidad, 0)
+}
 
-//     let op = Number(prompt("Menú principal: \n1. Ver Remeras \n2. Ver Buzos \n3. Ver Todos \n4. Agregar al carrito \n5. Salir"))
-    
-//     switch(op) {
-//         case 1:
-            // mostrarMenuArticulo("Remera") 
-//         break;
-//         case 2:
-//         mostrarMenuArticulo("Buzo") 
-//         break;
-//         case 3:
-//             mostrarMenuTodos()
-//         break;
-//         case 4:
-//             AgregarCarrito()
-//         break;
-//         case 5:
-//             verMenu = false;
-//             continue
-//         default:
-//             console.log("Seleccione un opcion valida")
-//     }
-    
-//     opMenu = prompt("¿Quiere ver el menú nuevamente? \nIngrese 'si' o 'no'")
-//     if(opMenu == 'si'){
-//         verMenu = true;
-//     } else if (opMenu == 'no'){
-//         verMenu = false;
-//     } else {
-//         alert("No ingresó una opcion válida")
-//     }
-// }
+// Vaciar todo el contenido del carrito
+botonVaciarCarrito.addEventListener('click', () => { 
+    carrito.length = 0 // Vaciar todo el contenido del carrito
+    precioTotal.innerText = 0,
+    contadorCarrito.innerText = 0;
+    actualizarCarrito()
+})
 
-// alert("Gracias por visitarnos")
+
+
+
+
+// Mensaje de carrito vacio
+let mensajeCarritoVacio = document.createElement('p')
+mensajeCarritoVacio.className = 'carrito-vacio'
+mensajeCarritoVacio.innerHTML = `<p>El carrito está vacio</p>` 
