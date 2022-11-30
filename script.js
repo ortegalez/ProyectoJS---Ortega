@@ -1,95 +1,15 @@
-//********************* OBJETOS DE PRODUCTOS ***********************/ 
-
-const BBDD = [
-    { 
-    id:1,
-    articulo: "Remera",
-    color: "Blanco",
-    img: "../images/productos/remera-blanca.jpg",
-    talles: "S, M, L, XL",
-    precio: 1500,
-    cantidad: 1
-    },
-    { 
-    id:2,
-    articulo: "Remera",
-    color: "Negro",
-    img: "../images/productos/remera-negra.jpg",
-    talles: "S, M, L, XL",
-    precio: 1500,
-    cantidad: 1
-    },
-    { 
-    id:3,
-    articulo: "Remera",
-    color: "Azul",
-    img: "../images/productos/remera-azul.jpg",
-    talles: "S, M, L, XL",
-    precio: 1500,
-    cantidad: 1
-    },
-    { 
-    id:4,
-    articulo: "Remera",
-    color: "Rosa",
-    img: "../images/productos/remera-rosa.jpg",
-    talles: "S, M, L, XL",
-    precio: 1500,
-    cantidad: 1
-    },
-    { 
-    id:5,
-    articulo: "Remera",
-    color: "Verde",
-    img: "../images/productos/remera-verde.jpg",
-    talles: "S, M, L, XL",
-    precio: 1500,
-    cantidad: 1
-    },
-    { 
-    id:6,
-    articulo: "Buzo",
-    color: "Negro",
-    img: "../images/productos/buzo-negro.jpg",
-    talles: "S, M, L, XL",
-    precio: 2000,
-    cantidad: 1
-    },
-    { 
-    id:7,
-    articulo: "Buzo",
-    color: "Verde",
-    img: "../images/productos/buzo-verde.jpg",
-    talles: "S, M, L, XL",
-    precio: 2000,
-    cantidad: 1
-    },
-    { 
-    id:8,
-    articulo: "Buzo",
-    color: "Gris",
-    img: "../images/productos/buzo-gris.jpg",
-    talles: "S, M, L, XL",
-    precio: 2000,
-    cantidad: 1
-    },
-    { 
-    id:9,
-    articulo: "Buzo",
-    color: "Rosa",
-    img: "../images/productos/buzo-rosa.jpg",
-    talles: "S, M, L, XL",
-    precio: 2000,
-    cantidad: 1
-    }
-]
 
 // ===============  Globales =================
+
+const BBDD = JSON.parse(localStorage.getItem('listaProductos'))
+
 const contenedorProductos = document.getElementById('contenedor-productos');
 
 const contenedorCarrito = document.getElementById('contenedor-carrito');
 
 const botonVaciarCarrito = document.getElementById('vaciar-carrito')
+
+const botonesCategorias = document.querySelectorAll('.boton-categorias')
 
 let carrito = []
 
@@ -117,16 +37,19 @@ botonComprar.addEventListener('click' , () => {
     carrito.splice(0, carrito.length)
     actualizarCarrito()
 })
-//  =============== Fin Alerts =============
 
+//  ================== Fin Alerts ==================
 
 // =================== Funciones ===================
 
 // Funcion para mostrar TODOS los productos
-function mostrarProductos () {
+function mostrarProductos (productosElegidos) {
 
-    BBDD.forEach((producto)=>{
-        let cardProducto = document.createElement('div')
+    contenedorProductos.innerHTML =""
+
+    productosElegidos.forEach((producto) => {
+
+        const cardProducto = document.createElement('div')
         cardProducto.className = 'card-producto'
         cardProducto.innerHTML =
                 `<img class="producto-imagen" src="${producto.img}" alt="${producto.articulo}">
@@ -147,7 +70,8 @@ function mostrarProductos () {
     }) 
   
 }
-mostrarProductos () 
+mostrarProductos (BBDD)
+
 
 // Funcion para agregar items al carrito de compra
 function agregarCarrito (prodId)  {
@@ -162,9 +86,28 @@ function agregarCarrito (prodId)  {
         carrito.push(item)
     }
     const enCarrito = JSON.stringify(carrito)
-    console.log(enCarrito)
+    // console.log(enCarrito)
     actualizarCarrito() 
 }
+
+// Funcion para filtrar elementos del aside bar
+botonesCategorias.forEach(boton => {
+    
+    // Asigna clase "Active para cambiar el display del aside"
+    boton.addEventListener('click', (e) => {
+        botonesCategorias.forEach(boton => boton.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+
+        // Filtra el array y muestra el tipo de articulo que quiero
+        if (e.currentTarget.id != "todos") {
+            const productosBoton = BBDD.filter(producto => producto.articulo === e.currentTarget.id)
+            mostrarProductos(productosBoton)
+        } else {
+            mostrarProductos(BBDD)
+        }
+    }
+    )}
+)
 
 
 // Funcion para  crear el item del producto en el carrito de compras
@@ -220,10 +163,12 @@ const eliminarDelCarrito = (prodId) => {
     actualizarCarrito()
 }
 
+
 // Actualizar numero del carrito al agragar items:
 function actualizarNumeroCarrito () {
     contadorCarrito.innerText = carrito.reduce((acc, producto) => acc + producto.cantidad, 0)
 }
+
 
 // Vaciar todo el contenido del carrito
 botonVaciarCarrito.addEventListener('click', () => { 
@@ -232,9 +177,6 @@ botonVaciarCarrito.addEventListener('click', () => {
     contadorCarrito.innerText = 0;
     actualizarCarrito()
 })
-
-
-
 
 
 // Mensaje de carrito vacio
