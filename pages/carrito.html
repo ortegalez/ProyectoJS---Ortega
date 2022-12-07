@@ -32,99 +32,47 @@
                             <a class="nav-link text-white" href="productos.html">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Guia de talles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Cómo comprar</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-white" href="./contacto.html">Contácto</a>
                         </li>
+                        <li class="nav-item boton-carrito">
+                            <a class=" nav-link text-white" href="#"><i class="bi bi-cart3"></i><span class="numero-carrito">0</span></a>
+                        </li> 
                     </ul>
                 </div>
             </div>
         </nav>   
     </header>
     <div class="carrito-cuerpo">
+        
         <aside>
-            <nav>
-                <ul class="menu">
-                    <li>
-                        <a class="boton-menu boton-volver" href="../pages/productos.html"><i class="bi bi-arrow-return-left"></i>Todos los Productos</a>
-                    </li>
-                    <li>
-                        <a class="boton-menu boton-carrito active" href="./carrito.html"><i class="bi bi-cart3"></i>Carrito<span>0</span></a>
-                    </li>
-                </ul>
-            </nav>
+            <a class="boton-menu boton-volver" href="../pages/productos.html"><i class="bi bi-arrow-return-left"></i>Todos los Productos</a>
         </aside>
-        <main class="principal">
-            <h1>CARRITO</h1>
-            <section class="sesion-carrito">
-                <p class="carrito-vacio">El carrito está vacío.</p>
-                
-                <div class="carrito-productos disabled">
-                    
-                    <div class="carrito-producto">
-                        <img class="carrito-producto-imagen" src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/323/009/products/blanco-abdaf278a811ef027316560860130814-320-0.jpg" alt="">
-                        <div class="carrito-producto-titulo">
-                            <p>Titulo</p>
-                            <h5>Remera 01</h5> 
-                        </div>
-                        <div class="carrito-producto-cantidad">
-                            <p>Cantidad</p>
-                            <h5>1</h5>
-                        </div>
-                        <div class="carrito-producto-precio">
-                            <p>Precio</p>
-                            <h5>$2000</h5>
-                        </div>
-                        <div class="carrito-producto-subtotal">
-                            <p>Sub-total</p>
-                            <h5>$1000</h5>
-                        </div>
-                        <button class="carrito-producto-eliminar"><i class="bi bi-trash3-fill"></i></button>
-                    </div>
-    
-                    <div class="carrito-producto">
-                        <img class="carrito-producto-imagen" src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/323/009/products/blanco-abdaf278a811ef027316560860130814-320-0.jpg" alt="">
-                        <div class="carrito-producto-titulo">
-                            <p>Titulo</p>
-                            <h5>Remera 01</h5> 
-                        </div>
-                        <div class="carrito-producto-cantidad">
-                            <p>Cantidad</p>
-                            <h5>1</h5>
-                        </div>
-                        <div class="carrito-producto-precio">
-                            <p>Precio</p>
-                            <h5>$2000</h5>
-                        </div>
-                        <div class="carrito-producto-subtotal">
-                            <p>Sub-total</p>
-                            <h5>$1000</h5>
-                        </div>
-                        <button class="carrito-producto-eliminar"><i class="bi bi-trash3-fill"></i></button>
-                    </div>
-                
-                </div>
-                <div class="carrito-acciones disabled">
-                    <div class="carrito-acciones-izquierda">
-                        <button class="carrito-acciones-vaciar">Vaciar carrito</button>
-                    </div>
-                    <div class="carrito-acciones-derecha">
-                        <div class="carrito-acciones-total">
-                            <h5>Total:</h5>
-                            <h5 id="total">$2000</h5>
-                        </div>
-                        <button class="carrito-acciones-comprar">Comprar Ahora</button>
-                    </div>
-                </div>
-                <p class="carrito-comprado disabled">Gracias por su compra</p>
-            </section>
-      
-        </main>
 
+        <main class="main-productos">
+
+            <h2 class="titulo-principal">Productos agregados al carrito</h2>            
+            
+            <section class="seccion-carrito" id="contenedor-carrito">
+
+                <!-- Aqui van los productos que se cargan al carrito -->
+
+            </section>
+
+            <div class="carrito-acciones">
+                <!-- Acciones del carrito para COMPRAR y VACIAR CARRITO -->
+                <div class="carrito-acciones-izquierda">
+                    <button class="carrito-acciones-vaciar" id="vaciar-carrito">Vaciar carrito</button>
+                </div>
+                <div class="carrito-acciones-derecha">
+                    <div class="carrito-acciones-total">
+                        <h5>Total:</h5>
+                        <h5 id="precio-total">0</h5>
+                    </div>
+                    <button class="carrito-acciones-comprar">Comprar Ahora</button>
+                </div>
+            </div>
+        
+        </main>
     </div>
     
     
@@ -133,7 +81,8 @@
             <p>Copyright &#169 2022 - Victor Ortega | Todos los derechos reservados.</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>   
-    <script src="script.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/carrito.js"></script>
+    <script src="../js/BBDD.js"></script>
 </body>
 </html>

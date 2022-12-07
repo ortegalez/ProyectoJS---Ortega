@@ -24,7 +24,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
+                        <ul class="navbar-nav ms-auto d-flex align-items-stretch">
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="../index.html">Inicio</a>
                             </li>
@@ -40,23 +40,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="./contacto.html">Contacto</a>
                             </li> 
+                            <li class="nav-item boton-carrito">
+                                <a class=" nav-link text-white" href="./carrito.html"><i class="bi bi-cart3"></i><span class="numero-carrito">0</span></a>
+                            </li> 
+                            
                         </ul>
                     </div>
                 </div>
             </nav>   
         </header>
-    
-        <!-- <div class="modal">
-        <div class="modad-contenedor">
-            <h2 class="modal-titulo">Carrito</h2>
-            <div class="modal-agredados">
-              AQUI IRA UN MODAL DONDE SE CARGARAN LOS PRODUCTOS DEL CARRITO
-                <button class="carrito-producto-eliminar"><i class="bi bi-trash3-fill"></i></button>
-            </div>
-            <button class="boton-vaciar">Vaciar carrito</button>
-        </div>
-        </div> -->
-    
         <div class="producto-cuerpo">
             <aside>
                 <nav>
@@ -73,54 +65,28 @@
                         <li>
                             <button id="PACK" class="boton-menu boton-categorias"><i class="bi bi-arrow-right"></i>Packs</button>
                         </li>
-                        <li>
-                            <a class="boton-menu boton-carrito" href="#"><i class="bi bi-cart3"></i>Carrito<span class="numero-carrito">0</span></a>
-                        </li>
                     </ul>
                 </nav>
             </aside>
+
             <main class="main-productos">
-                <h1 class="titulo-principal">PRODUCTOS</h1>
-                <section id="contenedor-productos" class="seccion-productos">
-                    <!-- Aqui van todos los productos -->
-                </section>
-               
-             
-    
-                <h1 class="titulo-principal">CARRITO</h1>
-                <section class="seccion-carrito" id="contenedor-carrito">
-                    
-                    <!-- <p class="carrito-vacio">El carrito está vacío.</p> -->
-
-                    <!-- Aqui van los productos que se cargan al carrito -->
-                    
-                    <p class="carrito-comprado disabled">Gracias por su compra</p>
                 
+                <h2 class="titulo-principal" id="titulo-principal" >Todos los productos</h2>
+                <section id="contenedor-productos" class="seccion-productos">
+                    <!-- Aqui se muestran todos los productos -->
                 </section>
-
-                <div class="carrito-acciones">
-                    <div class="carrito-acciones-izquierda">
-                        <button class="carrito-acciones-vaciar" id="vaciar-carrito">Vaciar carrito</button>
-                    </div>
-                    <div class="carrito-acciones-derecha">
-                        <div class="carrito-acciones-total">
-                            <h5>Total:</h5>
-                            <h5 id="precio-total">0</h5>
-                        </div>
-                        <button class="carrito-acciones-comprar">Comprar Ahora</button>
-                    </div>
-                </div>
+            
             </main>
+
         </div>
-    
         <footer>
             <div class="text-white text-center">
                 <p>Copyright &#169 2022 - Victor Ortega | Todos los derechos reservados.</p>
             </div>
         </footer>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../script.js"></script>
-        <script src="../BBDD.js"></script>
+        <script src="../js/paginaProductos.js"></script>
+        <script src="../js/carrito.js"></script>
+        <script src="../js/BBDD.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>     -->
-    
     </html>
