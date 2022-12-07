@@ -50,8 +50,6 @@ producto13,
 producto14
 ]
 
-console.log(productos)
-
 // const productos = [
 //     { 
 //     id:1,
