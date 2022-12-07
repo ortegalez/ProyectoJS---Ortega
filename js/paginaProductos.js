@@ -44,6 +44,7 @@ function mostrarProductos (productosElegidos) {
         contenedorProductos.append(cardProducto)
         
         let btnAgregar = document.getElementById(`agregar${producto.id}`)
+        
         btnAgregar.addEventListener('click', () => {
         agregarCarrito(producto.id)
         })

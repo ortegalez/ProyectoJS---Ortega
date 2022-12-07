@@ -11,6 +11,10 @@ const precioTotal = document.getElementById("precio-total")
 const botonComprar = document.querySelector('.carrito-acciones-comprar')
 
 const contadorCarrito = document.querySelector('.numero-carrito')
+
+let botonSumar
+let botonRestar
+
 // ===============  Fin Globales =================
 
 
@@ -66,14 +70,27 @@ function actualizarCarrito() {
                 <div>
                     <p>Cantidad</p>
                     <div class="carrito-producto-botones">
-                        <button>-</button>
+                        <button id="boton-restar${producto.id}">-</button>
                         <h5 id="cantidad">${producto.cantidad}</h5>
-                        <button>+</button>
+                        <button id="boton-sumar${producto.id}">+</button>
                     </div>
                 </div>
                 <button onclick ="eliminarDelCarrito(${producto.id})" class="carrito-producto-eliminar"><i class="bi bi-trash3-fill"></i></button>`
-    
             contenedorCarrito.appendChild(itemCarrito)
+
+            botonSumar = document.getElementById(`boton-sumar${producto.id}`)
+            botonRestar = document.getElementById(`boton-restar${producto.id}`)
+
+
+            botonSumar.addEventListener('click', () => {
+                sumarProductoCarrito(producto.id)
+            })
+
+            botonRestar.addEventListener('click', () => {
+                restarProductoCarrito(producto.id)
+            })
+
+
             precioTotal.innerText = "$" + productosEnCarrito.reduce((acc, producto) => acc + (producto.precio*producto.cantidad), 0)
             actualizarContadorCarrito ()
             
@@ -90,6 +107,37 @@ function actualizarCarrito() {
     actualizarContadorCarrito ()
 }
 actualizarCarrito ()
+
+// Función para sumar cantidad a un producto agregado
+function sumarProductoCarrito (prodId) {
+    const itemAgregado = productosEnCarrito.find((prod) => prod.id === prodId); 
+    if(productosEnCarrito.some(producto => producto.id === prodId)) {
+        const index = productosEnCarrito.findIndex(producto => producto.id ===  prodId)
+        productosEnCarrito[index].cantidad++;   
+    }
+    actualizarCarrito()
+    localStorage.setItem('productos-en-carrito', JSON.stringify(productosEnCarrito))
+}
+
+
+// Función para restar cantidad a un producto agregado
+function restarProductoCarrito(prodId) {
+
+    const itemArestar = productosEnCarrito.find((prod) => prod.id === prodId); 
+    console.log(itemArestar)
+    
+    if(itemArestar.cantidad > 1) {
+        const index = productosEnCarrito.findIndex(producto => producto.id ===  prodId)
+        productosEnCarrito[index].cantidad--;
+    } else {
+        eliminarDelCarrito(itemArestar.id)
+        if(productosEnCarrito.length == 0){
+            precioTotal.innerText = 0
+        }
+    }
+    actualizarCarrito()
+    localStorage.setItem('productos-en-carrito', JSON.stringify(productosEnCarrito))
+}
 
 
 // Sumar monto total de los item agregados al carrito:
