@@ -24,62 +24,42 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto d-flex align-items-stretch">
+                        <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
                                 <a class="nav-link link-nav-bar" href="../index.html">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link link-nav-bar" href="productos.html">Productos</a>
-
+                                <a class="nav-link link-nav-bar" href="./productos.html">Productos</a>
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link link-nav-bar" href="./novedades.html">Novedades</a>
+                                <a class="nav-link link-nav-bar" href="novedades.html">Novedades</a>
                             </li> 
                             <li class="nav-item boton-carrito">
-                                <a class=" nav-link link-nav-bar" href="./carrito.html"><i class="bi bi-cart-check-fill"></i></i><span class="numero-carrito">0</span></a>
+                                <a class="nav-link link-nav-bar" href="./carrito.html"><i class="bi bi-cart-check-fill"></i></i><span class="numero-carrito">0</span></a>
                             </li> 
                         </ul>
                     </div>
                 </div>
             </nav>   
         </header>
-        <div class="producto-cuerpo">
-            <aside>
-                <nav>
-                    <ul class="menu">
-                        <li>
-                            <button id="todos" class="boton-menu boton-categorias active"><i class="bi bi-arrow-right"></i>Todos los Productos</button>
-                        </li>
-                        <li>
-                            <button id="REMERA" class="boton-menu boton-categorias"><i class="bi bi-arrow-right"></i>Remeras</button>
-                        </li>
-                        <li>
-                            <button id="BUZO" class="boton-menu boton-categorias"><i class="bi bi-arrow-right"></i>Buzos</button>
-                        </li>
-                        <li>
-                            <button id="PACK" class="boton-menu boton-categorias"><i class="bi bi-arrow-right"></i>Packs</button>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-
-            <main class="main-productos">
-                
-                <h2 class="titulo-principal" id="titulo-principal" >Todos los productos</h2>
-                <section id="contenedor-productos" class="seccion-productos">
-                    <!-- Aqui se muestran todos los productos -->
-                </section>
-            
-            </main>
-
-        </div>
+        <main class="main-novedades">
+            <!-- <h1 class="titulo-principal">NOVEDADES</h1> -->
+            <div class="articulo-novedades">
+                <h2>Colección de remeras Pokemón</h2>
+                <p>Para este verano 2023 llega la nueva línea de remeras pokemón</p>  
+                <div class="novedades-pokemon">
+            </div>
+                <!-- Aqui se cargan todos imagenes -->
+            </div>
+        </main>
         <footer>
             <div class="text-white text-center">
                 <p>Copyright &#169 2022 - Victor Ortega | Todos los derechos reservados.</p>
             </div>
         </footer>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../js/novedades.js"></script>
         <script src="../js/paginaProductos.js"></script>
         <script src="../js/carrito.js"></script>
         <script src="../js/BBDD.js"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>     -->
-    </html>
+    </body>
+</html>

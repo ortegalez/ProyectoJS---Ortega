@@ -15,6 +15,7 @@
    --lihgt-gray: #77778d;
    --yellow: #f1d900;
    --dark-blue: #000148;
+   --green: #039103;
 }
   
 h1, h2, h3, h4, h5, h6, p, a, input, textarea{
@@ -40,7 +41,16 @@ header, footer {
 header {
     position: sticky;
     top: 0;
+    z-index: 100;
 }
+
+.link-nav-bar {
+    color: var(--white);
+} 
+
+.link-nav-bar:active {
+    color: var(--yellow);
+} 
 
 
 .producto-cuerpo,
@@ -50,14 +60,19 @@ header {
     background-color: var(--dark-gray);
 }
 
-.main-principal {
+.main-index {
     height: 85vh;
-    background-color: var(--dark-gray);
+    background-color: var(--black);
     color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
+}
+
+.main-principal ul li:hover {
+    color: var(--yellow);
 }
 
 aside {
@@ -146,6 +161,12 @@ aside {
     background-color: var(--dark-blue);
 }
 
+.producto-agregar:active {
+    background-color: var(--green);
+}
+
+
+
 /* =============== FIN SESION DE PRODUCTOS ============== */
 
 /* ============= MENU LATERAL DE PRODUCTOS ============== */
@@ -203,9 +224,10 @@ aside {
 }
 
 .boton-carrito {
-    border: 2px solid var(--yellow);
+    border: 3px solid var(--white);
     border-radius: 0.35rem;
-    background-color: var(--lihgt-gray);
+    background-color: var(--dark-blue);
+    background-color: var(--green);
     margin: 0 0.5rem;
     font-size: 1.25rem;
     /* padding: 0 0.5rem; */
@@ -383,3 +405,62 @@ aside {
 }
 
 
+/* ================= NOVEDADES =============== */
+
+
+.main-novedades {
+    /* background-color: var(--dark-gray); */
+}
+
+.articulo-novedades {
+    margin: 3rem;
+    /* background-color: red; */
+}
+
+.novedades-pokemon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.card-pokemon {
+    border: 2px solid var(--black);
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 3px #00000073;
+    position: relative;
+    box-sizing: border-box;    
+    background-image:  url('../images/modelo-remera-negra.jpg');
+    background-size : contain;
+    width: 400px;
+    height: 500px;
+    /* width: 450px;
+    height: 675px; */
+    /* background-image: url('../images/modelo-remera-blanca.jpg'); */
+
+}
+
+.nombre-pokemon {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    line-height: 3rem;
+    text-align: center;
+    border-radius: 0 0 0.5rem 0.5rem;;;
+}
+
+.imagen-pokemon {
+    position: absolute;
+    width: 120px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}

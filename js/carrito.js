@@ -1,5 +1,6 @@
 // ===============  Globales =================
 
+
 const productosEnCarrito = JSON.parse(localStorage.getItem('productos-en-carrito'))
 
 const contenedorCarrito = document.getElementById('contenedor-carrito');

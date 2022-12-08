@@ -1,3 +1,4 @@
+
 // ===============  Globales =================
 
 const BBDD = JSON.parse(localStorage.getItem('listaProductos'))
@@ -97,6 +98,4 @@ function actualizarNumeroCarrito () {
     contadorCarrito.innerText = carrito.reduce((acc, producto) => acc + producto.cantidad, 0)
 }
 
-
-// Ejecución de funciones 
 
