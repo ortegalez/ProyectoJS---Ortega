@@ -28,9 +28,10 @@ if(productosEnCarritoLS) {
 
 // Funcion para mostrar TODOS los productos
 function mostrarProductos (productosElegidos) {
+    if(contenedorProductos){
 
-    contenedorProductos.innerHTML =""
-    
+        contenedorProductos.innerHTML =""
+        
     productosElegidos.forEach((producto) => {
         const cardProducto = document.createElement('div')
         cardProducto.className = 'card-producto'
@@ -42,16 +43,16 @@ function mostrarProductos (productosElegidos) {
                     <p class="producto-precio">Precio: $${producto.precio}</p>
                     <button id="agregar${producto.id}" class="producto-agregar">Agregar</button>
                     </div>`            
-        contenedorProductos.append(cardProducto)
-        
-        let btnAgregar = document.getElementById(`agregar${producto.id}`)
+                    contenedorProductos.append(cardProducto)
+                    
+                    let btnAgregar = document.getElementById(`agregar${producto.id}`)
         
         btnAgregar.addEventListener('click', () => {
         agregarCarrito(producto.id)
         })
     })  
 }
-
+}
 mostrarProductos (BBDD)
 
 

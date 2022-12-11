@@ -88,12 +88,15 @@ aside {
 }
 
 
-
-
 .titulo-principal { 
     color: var(--dark-blue);
     font-weight: bold;
     margin-bottom: 1rem;
+}
+
+.titulo-secundario {
+    color: var(--dark-blue);
+    font-weight: bolder;
 }
 
 /* =============== SESION DE PRODUCTOS ============== */
@@ -407,17 +410,12 @@ aside {
 
 /* ================= NOVEDADES =============== */
 
-
-.main-novedades {
-    /* background-color: var(--dark-gray); */
-}
-
 .articulo-novedades {
     margin: 3rem;
-    /* background-color: red; */
+
 }
 
-.novedades-pokemon {
+.novedades-pokemon, .novedades-rick {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -426,10 +424,10 @@ aside {
     padding: 1rem;
 }
 
-.card-pokemon {
+.card-pokemon, .card-rick {
     border: 2px solid var(--black);
     border-radius: 0.5rem;
-    box-shadow: 3px 3px 3px #00000073;
+    box-shadow: 6px 6px 6px #00000073;
     position: relative;
     box-sizing: border-box;    
     background-image:  url('../images/modelo-remera-negra.jpg');
@@ -442,20 +440,21 @@ aside {
 
 }
 
-.nombre-pokemon {
+.nombre-pokemon, .nombre-rick {
     position: absolute;
     left: 0;
     bottom: 0;
     right: 0;
     margin: auto;
     background-color: #ffffff;
-    box-sizing: border-box;
     line-height: 3rem;
     text-align: center;
-    border-radius: 0 0 0.5rem 0.5rem;;;
+    border-radius: 0 0 0.5rem 0.5rem;
+    font-weight: bold;
+
 }
 
-.imagen-pokemon {
+.imagen-pokemon, .imagen-rick {
     position: absolute;
     width: 120px;
     top: 0;
@@ -463,4 +462,14 @@ aside {
     bottom: 0;
     right: 0;
     margin: auto;
+}
+
+.gif-pokemon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gif-pokemon img {
+width: 50%;
 }

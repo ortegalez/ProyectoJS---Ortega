@@ -47,7 +47,7 @@ function actualizarCarrito() {
     
         contenedorCarrito.innerHTML=""
 
-        productosEnCarrito.forEach((producto)=>{
+        productosEnCarrito.forEach((producto)=> {
         let itemCarrito = document.createElement('div')
         itemCarrito.className = 'carrito-producto';
         itemCarrito.innerHTML = 
