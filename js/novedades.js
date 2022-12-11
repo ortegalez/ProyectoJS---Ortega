@@ -9,10 +9,7 @@ const cardRick = document.querySelector('.card-rick');
 
 const contenedorNovedades2 = document.querySelector('.novedades-rick');
 
-const arrayIdsPokemones = [25, 9, 1, 7, 4, 18, 149, 151, 143]  // Ids de Pokemones que quiero mostrar
-
-// let shopContent = document.getElementById("shopContent")
-// shopContent.innerHTML = '<img src="https://thumbs.gfycat.com/DearWellinformedDalmatian-size_restricted.gif" width="400px">'
+const arrayIdsPokemones = [25, 9, 1, 7, 4, 18, 149, 151, 143];  // Ids de Pokemones que quiero mostrar
 
 
 let gifPokemon = document.querySelector(".gif-pokemon")
@@ -20,7 +17,7 @@ let gifPokemon = document.querySelector(".gif-pokemon")
 gifPokemon.innerHTML = '<img src="../images/giphy.gif" alt="Ash y pikachu">'
 
 
-// ===================== Funciones ================
+// ===================== Funciones =========================
 
 // Función para acceder a la API de Pokemón
 function traerPokemones(arr) {
@@ -48,7 +45,6 @@ function imagenPokemon(pokemon) {
 
 // Función para acceder a la API de Rick and Morty
 function traerRick(id) {    
-    
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
     .then((res) => res.json())
     .then((data) => imagenRick(data))
@@ -91,5 +87,5 @@ pedirProductosDelay()
   })
 
 
-// traerPokemones(arrayIdsPokemones)
+
 rickAndMorty(9);

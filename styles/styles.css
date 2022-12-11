@@ -97,7 +97,14 @@ aside {
 .titulo-secundario {
     color: var(--dark-blue);
     font-weight: bolder;
+    margin: 1rem; 
 }
+
+
+.titulo-terciario {
+    color: var(--white);
+}
+
 
 /* =============== SESION DE PRODUCTOS ============== */
 

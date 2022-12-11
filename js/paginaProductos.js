@@ -1,5 +1,5 @@
 
-// ===============  Globales =================
+// ===================== Globales =======================
 
 const BBDD = JSON.parse(localStorage.getItem('listaProductos'))
 
@@ -9,9 +9,10 @@ const botonesCategorias = document.querySelectorAll('.boton-categorias')
 
 const tituloPrincipal = document.querySelector('#titulo-principal')
 
-const contadorCarrito = document.querySelector('.numero-carrito')
+const contadorCarrito = document.getElementById('numero-carrito')
 
 let carrito;
+
 // Traer array del LS
 const productosEnCarritoLS = JSON.parse(localStorage.getItem('productos-en-carrito'))
 
@@ -22,9 +23,9 @@ if(productosEnCarritoLS) {
     carrito = [];
 }
 
-// ===============  Fin Globales =================
+// ====================  Fin Globales  ===================
 
-// =================== Funciones ===================
+// ===================== Funciones ======================
 
 // Funcion para mostrar TODOS los productos
 function mostrarProductos (productosElegidos) {
