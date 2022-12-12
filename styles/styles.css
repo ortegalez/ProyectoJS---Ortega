@@ -444,8 +444,18 @@ aside {
     /* width: 450px;
     height: 675px; */
     /* background-image: url('../images/modelo-remera-blanca.jpg'); */
-
 }
+
+.card-pokemon:hover {
+    transition: all 0.5s;
+    box-shadow:  0 0 5px  var(--yellow), 0 0 10px  var(--yellow), 0 0 35px  var(--yellow), 0 0 40px  var(--yellow);
+}
+
+.card-rick:hover {
+    transition: all 0.5s;
+    box-shadow:  0 0 5px  rgba(80, 238, 80, 0.589), 0 0 10px  green, 0 0 35px  green, 0 0 40px  green;
+}
+
 
 .nombre-pokemon, .nombre-rick {
     position: absolute;
@@ -472,11 +482,26 @@ aside {
 }
 
 .gif-pokemon {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.nombre-pokemon {
+    color: var(--dark-gray);
+}
+
+.card-pokemon:hover .nombre-pokemon {
+text-shadow: 0 0 5px  var(--yellow), 0 0 10px  var(--yellow), 0 0 35px  var(--yellow), 0 0 40px  var(--yellow);
+}
+
 .gif-pokemon img {
-width: 50%;
+width: 35%;
+border-radius: 1rem;
+animation: rayo 3s  infinite backwards;
+}
+
+@keyframes rayo {
+    to {box-shadow:  0 0 15px  var(--yellow), 0 0 20px  var(--yellow), 0 0 45px  var(--yellow), 0 0 50px  var(--yellow);}
 }

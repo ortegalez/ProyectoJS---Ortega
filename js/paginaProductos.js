@@ -9,7 +9,7 @@ const botonesCategorias = document.querySelectorAll('.boton-categorias')
 
 const tituloPrincipal = document.querySelector('#titulo-principal')
 
-const contadorCarrito = document.getElementById('numero-carrito')
+const contadorCarrito = document.querySelector('.numero-carrito')
 
 let carrito;
 

@@ -75,7 +75,7 @@ const pedirProductosDelay = () => {
       return new Promise( (resolve, reject) => {
           setTimeout(() => {
               resolve(arrayIdsPokemones)
-          }, 3000)
+          }, 2500)
       })
     }
 
